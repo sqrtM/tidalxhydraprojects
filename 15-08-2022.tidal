@@ -1,0 +1,120 @@
+setcps (140.5/60/4)
+
+d1 $ hurry 1.25 $ slow 4 $ slice 4 (run 4) $ sound "<hibikase:0 hibikase:1>" # room 0.4 # pan sine -- # lpf (fast 3.14529 $ range 700 2500 sine)
+
+d1 $ hurry 0.5 $ slow 0.5 $ chop 8 $ sound "<hibikase:18>" # room 0.4 # pan sine # lpf 1000
+
+d1 $ hurry 1.25 $ slow 1 $ chop 4 $ sound "<hibikase:9>" # room 0.4 # pan sine # hpf (fast 3.14529 $ range 700 2500 sine)
+
+
+d1
+  $ qtrigger 8 $ stack [
+    (fast 1.25 $ sound "<~ ~ ~ [~ ~ [deepsky:9 ~ ~ deepsky:9][~ deepsky:9]] ~ ~ ~ deepsky:12*4>" # gain 0.8),
+    (fast 1.25 $ sometimesBy 0.2 (fast 0.5) $ sound "<~ ~ ~ [~ ~ [drumtraks:10 ~ ~ drumtraks:10][~ drumtraks:10]] ~ ~ ~ ~>" # crush 3 # gain 0.8),
+    (fast 1.25 $ s "<~ ~ ~ [~ ~ [drumtraks:1 ~ ~ drumtraks:1][~ drumtraks:1]] ~ ~ ~ ~>" # crush 2 # gain 0.8),
+    (jux rev $ hurry 1.25 $ sometimesBy 0.05 (fast (choose [0.5, 0.25])) $ sometimesBy 0.2 (ply 2) $ sometimesBy 0.2 (degrade) $ chop 16 $ s "breaks165"),
+    (hurry 1.25 $ slow 4 $ slice 4 (run 4) $ sound "<hibikase:0 hibikase:1>" # pan "0.15 0.85")          ]
+    # room 0.4
+
+d1
+  $ qtrigger 8 $ stack [
+    (ghost $ fast 1.25 $ sometimesBy 0.3 (ply 2) $ sound "deepsky:12*2" # gain 0.8),
+    (fast 1.25 $ sometimesBy 0.2 (fast 0.5) $ sound "drumtraks:10*16" # crush 3 # lpf 1500 # gain 0.8),
+    (ghost $ fast 1.25 $ s "[~ drumtraks:1]*2" # crush 2 # gain 0.65 # delay 0.1),
+    (fast 1.25 $ sometimesBy 0.0 (fast (choose [0.5, 0.25])) $ sometimesBy 0.0 (ply 2) $ sometimesBy 0.0 (degrade) $ chop 16 $ s "breaks165" # kcutoff 1700 # krush 0),
+    (hurry 1.25 $ slow 4 $ sometimesBy 0.0 (ply 2) $ sometimesBy 0.0 (iter 8) $ slice 8 (run 8) $ sound "<hibikase:7 hibikase:8>" # pan sine # legato 0.9 # kcutoff 2000 # krush 0)
+            ]
+    # room 0.4
+
+d2
+  $ fast 1.25
+  $ slow 2
+  $ n "<as4'min7 fs4'maj9 fs4'dom7'5 [c4'dom9'ii f4'dom7'5]>"
+  # voice 0
+  # octave 7
+  # s "superhammond"
+  # gain 0.7
+  # lpf 800
+  # room 0.4
+
+d3
+  $ fast 1.25
+  $ slow 2
+  $ n "<as*4 cs*4 fs*4 [c*2 f*2]>"
+  # octave 3
+  # voice 0.1
+  # lfo 10
+  # rate 0.33
+  # resonance 0.3
+  # semitone 12
+  # s "supersaw"
+  # gain 0.7
+  # krush 5
+  # kcutoff 200
+  # room 0.4
+
+d4
+  $ fast 1.25
+  $ slow 2
+  $ arp "updown" $ n "<as4'min7'16 fs4'maj9'16 fs4'dom7'16 [c4'dom9'8 f4'dom7'8]>"
+  # s "superfm"
+  # velocity 20
+  # octave 5
+  # gain 0.5
+  # pan sine
+  # krush 20
+  # kcutoff 1000
+  # room 0.4
+
+d1
+  $ stack [
+    (ghost $ fast 1.25 $ sound "deepsky:12*2" # gain 0.9),
+    --(hurry 1.25 $ fast 0.5 $ slice 5 ("2 0 4 6 7 5 4 3 1 8 1") $ s "breaks165"),
+    (jux rev $ fast 1.25 $ sometimesBy 0 (fast (choose [0.5, 0.25])) $ sometimesBy 0 (ply 2) $ sometimesBy 0 (degrade) $ chop 16 $ s "breaks165" # kcutoff 700 # krush 0),
+    (fast 1.25 $ sometimesBy 0.8 (slow 2) $ sound "drumtraks:10*8" # bandf 2000),
+    (ghost $ fast 1.25 $ s "[~ drumtraks:1]*0.5" # crush 2 # gain 0.8),
+    (hurry 1.25 $ slow 2 $ sound "hibikase:15 hibikase:16 hibikase:15 hibikase:17" # pan sine)
+            ]
+    # room 0.4
+
+d1
+  $ stack [
+    (fast 2.5 $ hurry 0.5 $ sound "deepsky:16*3" # gain 0.9),
+    (fast 2.5 $ hurry 0.5 $ sometimesBy 0.2 (fast 0.5) $ sound "drumtraks:10*6" # crush 3 # gain 0.8),
+    (fast 2.5 $ hurry 0.5 $ s "[~ drumtraks:1]*1.5" # crush 2 # gain 0.8),
+    (fast 2.5 $ hurry 0.5 $ sometimesBy 0.5 (fast (choose [0.5, 0.25])) $ sometimesBy 0.6 (ply 2) $ sometimesBy 0.05 (degrade) $ chop 16 $ s "breaks165" # kcutoff 6000 # krush 5 # shape 0.7 # crush 4 # gain 0.6), -- # lpf (fast 3.14529 $ range 800 7500 cosine)),
+    (rev $ hurry 0.75 $ fast 1.25 $ ((splice "<2 1 1>" (run "<1 2 1 1>") $ s "<hibikase:13>" # octer 0.99)) # crush 4)
+          ]
+
+d1
+  $ hurry (choose [0.5,1,1.5,2])
+  $ sometimesBy 0.25 (hurry (choose [1.25,1,0.75,0.5]))
+  $ chew (choose [8]) "0 .. 4"
+  $ n "< 4 ~ 5 ~ >"
+  # s "tellyourworld"
+  # release 12
+  -- # ring sine
+  # leslie 0.1
+  # lsize 0.2
+  -- # comb cosine
+  # room 0.6
+  # sz 0.4
+  # lpf 1500
+
+d2
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ hurry (choose [0.5,0.333,0.75,0.2])
+  $ "insect:0"
+  # room 0.6
+
+d3
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ sound "birds*0.2456853" # n (irand 10)
+  # room 0.2
+  # pan (slow 2.1568435 $ cosine)
+
+d4
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ sound "birds3*0.456153453" # n (irand 19)
+  # room 0.2
+  # pan (slow 1.954683483 $ sine)

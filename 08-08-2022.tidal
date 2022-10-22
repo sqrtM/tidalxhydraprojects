@@ -1,0 +1,55 @@
+d1
+  $ jux rev
+  $ stack [
+          (n "0 [~ 0?] ~ [~ [~ 0]]" # s "deepsky" # gain 1.2),
+          degradeBy (0.2) $ (sometimesBy 0.10 (fast 0.5) (n "15*16" # s "HR16A") # pan 0.75),
+          degradeBy (0.3) $ (sometimesBy 0.20 (hurry 0.5) (n "21*16" # s "cheetahspecdrum")# pan 0.25),
+          off "e" (# crush 4) $ fast 4 (n "21 21 ~ 21" # s "cheetahspecdrum" # pan sine # gain 1.2)
+          ]
+  # room 0.4
+  # sz 0.1
+
+do
+  d2
+    $ slow 8
+    $ n "df'min9 c'min9'ii b4'min7'ii af4'min9'iii"
+    # s "supersquare"
+    # voice 0.65
+    # accelerate 1
+    # rate 1
+    # resonance 0.4
+    # semitone 0
+    # lfo 0.6
+    # pitch1 0.1
+    # sustain 3.65
+    # gain 0.8
+    # room 0.2
+    # sz 0.4
+  d4
+    $ slow 8
+    $ n "df c b4 af"
+    # s "supersaw"
+    # voice 0.9
+    # accelerate 1
+    # octave 3
+    # rate 1
+    # resonance 0.1
+    # semitone 0
+    # lfo 0.2
+    # pitch1 0.9
+    # gain 1
+
+d3
+  $ qtrigger 16 $ slow 16
+  $ n "f [bf4? ef] [d [c? d c]] [bf4 af4] [ef df] c [~ gf] [af [df6 c6]]"
+  # s "superhammond"
+  # octave 6
+  # voice 9
+  # pan cosine
+  # gain 0.9
+  # room 0.2
+  # sz 0.1
+
+
+
+hush

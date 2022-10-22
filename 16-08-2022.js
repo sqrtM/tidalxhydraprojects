@@ -1,0 +1,33 @@
+s0.initVideo("https://media.giphy.com/media/gy2oUWmIH2Ioao2DEI/giphy.mp4")
+s1.initVideo("https://media.giphy.com/media/wsNhWSwu7LSUw0x8o8/giphy.mp4")
+s2.initVideo("https://upload.wikimedia.org/wikipedia/commons/1/15/Looking_Northward_along_the_West_Shoreline_of_Wood_Lake_BC_in_Summer.webm")
+s3.initVideo("https://media.giphy.com/media/3xS0Tz4XG2ym0JwEPl/giphy.mp4")
+
+a.setCutoff(1)
+a.setScale(4)
+a.show()
+
+hush()
+
+src(s3)
+  .hue(() => (time/6))
+  .saturate( () => Math.sin(time*2))
+  .modulate(src(o0),()=>a.fft[0]*-0.4)
+  .scrollX(0.05,()=>time/5000)
+  .scrollY(0.05,()=>time/5000)
+  .diff(src(s1),-1)
+.out(o0)
+
+src(s2)
+  .hue(() => (time/20))
+  .contrast([1,2].fast(0.3258948).smooth())
+  .modulate(src(s0),1.1)
+  //
+  //.diff(src(s1),-1)
+  .modulate(src(o0),()=>0.000005+a.fft[0]*0.02)
+  .modulate(src(s0).scrollX(-0.05,()=>time/5000),()=>a.fft[0]*-0.2)
+  .sub(src(s3).brightness(1.5).scrollX(0, () => Math.cos(time*-0.2)*-a.fft[1]*-0.02 ),0.1)
+  .scrollX(()=>a.fft[0]*-0.0004+0.0001,()=>a.fft[0]*+0.0004)
+  .scrollY(-0.05,()=>a.fft[0]*0.00004)
+  .modulateScale(src(s0),()=>a.fft[0]*-0.4,[0.4,1,2,0.1].fast(0.4).smooth())
+.out(o0)

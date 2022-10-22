@@ -1,0 +1,20 @@
+let arpy1 = "~ arpy:10 ~ arpy:8 ~ arpy:6 arpy:4 ~"
+let arpy2 = "~ arpy:9 ~ arpy:7 ~ arpy:5 arpy:3 ~"
+
+d1
+  $ fast 1
+  $ stack [
+  --(ghost $ fast 4 $ hurry 0.5 $ striate 8 $ cat [s arpy1, s arpy1, s arpy2, s arpy2] # delay 0.1 # attack 0.1 # hpf 800 # gain 2.5 # pan "0.5 0 0.5 1"),
+  --
+  --(sometimes (jux rev) $ sometimesBy 0.33 (hurry (choose[0.5, 2, 2])) $ s "tabla2:24*16" # legato 0.3 # shape 0.3 # gain 1.4 # pan sine),
+  --(sometimes (jux rev) $ sometimesBy 0.2 (hurry 1.5) $ n "12*8 13*8" # s "moogmodular55" # shape 0.7 # octer (choose [0,1]) # hpf 2000 # crush 3),
+  --(n "21*4" # s "deepsky" # gain 1.2 # lpf 1000 # gain 1.2),
+  --
+  --(fast (choose [4,8,16]) $ chop (rot 2 "<64 32 64 128 112>") $ loopAt 0.5 $ sound "latibro" # n (run "<1 0 1 0>") # crush 5 # gain (sine + 0.8))
+  --
+  --(chop 4 $ hurry 0.5 $ fast 32 $ striate 2 $ sound "industrial" # n (irand 32) # octer sine),
+  --(sometimesBy 0.33 (hurry 2) $ n "11*16" # s "auto" # shape 0.6 # hpf 2000),
+  --(jux rev $ sometimesBy 0.2 (hurry 2) $ hurry 0.5 $ n "18*16" # s "kawaiXD5" # shape 0.4 # hpf 3000 # pan cosine # gain 0.8),
+  --(sometimes (jux rev) $ hurry 0.5 $ striate "<1 2 2 4>" $ chop "<2 4 1>" $ n "2 14 2 10" # s "alphabet" # shape 0.7 # octer 0.8 # djf 0.4)
+  ]
+  # room 0.3

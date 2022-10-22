@@ -1,0 +1,46 @@
+do
+  let sawpattern1 = "b'maj7'8 d'dom7'8 g'maj7'8 bf'dom7'8 ef'maj7'8 ef'maj7'8 a'min7'8 d'dom7'8"
+  let sawpattern2 = "g'maj7'8 bf'dom7'8 ef'maj7'8 fs'dom7'8 bf'maj7'8 bf'maj7'8 f'min7'8 bf'dom7'8"
+  let sawpattern3 = "ef'maj7'8 ef'maj7'8 a'min7'8 d'dom7'8 g'maj7'8 g'maj7'8 cs'min7'8 fs'dom7'8"
+  let sawpattern4 = "bf'maj7'8 bf'maj7'8 f'min7'8 bf'dom7'8 ef'maj7'8 ef'maj7'8 cs'min7'8 fs'dom7'8"
+  --
+  let sqpattern1 = "b4'maj7 d4'dom7'iii g4'maj9 bf3'dom7'iiii ef4'maj7'ii ef4'maj7'ii a4'min7 d4'dom7'ii"
+  let sqpattern2 = "g4'maj9 bf3'dom7'iii ef4'maj7 fs3'dom7'iiii bf3'maj7'ii bf3'maj7'ii f4'min7 bf3'dom7'iii"
+  let sqpattern3 = "ef4'maj7'ii ef4'maj7'ii a4'min7 d4'dom7'iii g4'maj7 g4'maj7 cs4'min7'iii fs4'dom7'ii"
+  let sqpattern4 = "bf4'maj7 bf4'maj7 f4'min7'ii bf3'dom7'iiii ef4'maj7'ii ef4'maj7'ii cs4'min7'iii fs4'dom7'ii"
+  --
+  d1
+    $ jux rev
+    $ slow 16 $ cat [n (arp "updown" sawpattern1), n (arp "updown" sawpattern2), n (arp "updown" sawpattern3), n (arp "updown" sawpattern4)]
+    # s "supersaw"
+    # octave 3
+    # voice  (slow 1.24 $ range 0.0 0.2 cosine)
+    # sustain (slow 2.14529 $ range 0.24 0.33 cosine)
+    # delay (fast 1.05468 $ range 0.0 0.8 cosine)
+    # resonance (slow 3.1568 $ range 0.0 0.5 sine)
+    # room 0.3
+    # sz 0.4
+    # gain 0.7
+    #silence
+  d2
+    $ slow 8 $ cat [n sqpattern1, n sqpattern2, n sqpattern3, n sqpattern4]
+    # s "superhammond"
+    # voice 2
+    # octave 5
+    # room 0.3
+    # sz 0.4
+    # gain 0.7
+
+d3
+  $ every 3 palindrome
+  $ every 4 (jux rev)
+  $ stack [
+           (chunk 4  (# speed 2) $ slow 2 $ n "8 1 8 1 8 1 8 1" # s "ul" # djf 0.8 # vowel "a e i o u"),
+           (chunk' 3 (# speed 2) $ slow 2 $ n "1 5 1 5 1 5 1 5" # s "ul" # djf 0.35 # vowel "u o i e a"),
+           (chunk 8  (# speed 2) $ degradeBy 0.05 $ sometimesBy 0.2 (fast 1.5) $ sometimesBy 0.21 (hurry 2) $ n "2*8" # s "ul" # gain 1.1),
+           (n "1 2 1 2" # s "uxay" # octersub 1.5 # pan "0 0.5 1 0.5"),
+           --(jux rev $ hurry 2 $ degradeBy 0.1 $ sound "pluck*4" # n (irand 32) # djf 0.35 # octer (slow 3.1568 $ range 0.0 0.45 sine) # legato 2 # pan cosine # vowel "e" # gain 1.1),
+           (fast 0.5 $ sound "coins*4" # pan "0.5 1 0.5 0" # octer 0.99)
+          ]
+  # sz 0.4
+  # room 0.2

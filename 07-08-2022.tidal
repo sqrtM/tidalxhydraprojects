@@ -1,0 +1,42 @@
+d1
+  $ stack [
+          fast (sine + 1) (n "[0 1 3 1]/5" # s "wind" # sustain 5),
+          sometimesBy 0.25 (jux rev) $ slow 2 (n "25*5" # s "deepsky" # gain 1.1),
+          sometimesBy 0.10 (fast 0.5) $ fast 0.25 (n "[~ 0]*10" # s "kawaiXD5"),
+          slow (choose [1,2,4]) (n "18*20" # s "kawaiXD5" # pan cosine # gain 0.7),
+          slow 2 (n "~ 18 . 19 ~ . 20 21 . ~ 20 . 19 ~" # s "sakataDPM48" # octer cosine + 1.5 # shape 0.1 # pan sine),
+          slow 2 $ sometimesBy 0.25 palindrome (n "[15 15?*3] [14*2] [9*2] [11 6]? [6 7] [15 15?*3] [14?*2] [9?*2] [11? 6] [6? 7]" # s "sakataDPM48" # squiz (choose [0,0,0,0,0,0,2,0,0,2,4]))
+           ]
+  # room 0.4
+  # sz 0.9
+  # gain 1.5
+
+do
+  d2
+    $ slow 8 $ n "c'min9 f4'min9'iii bf4'min7'ii [f4'min11'iii fs4'maj11'ii] e4'min7'iii a4'min7'ii d4'min11'iii g4'min9'ii [fs4'maj9'ii c5'maj7 a4'maj9'ii] cs'min9"
+    # s "superfm"
+    # amp 0.5
+    # voice 0
+    # room 0.4
+    # sz 0.5
+    # gain 0.7
+  d4
+    $ slow 8 $ n "c f bf b e a d g gs cs"
+    # s "superhammond"
+    # octave 2
+    # voice 9
+    # room 0.2
+    # sz 0.5
+    # gain 1.1
+
+xfade 1
+  $ slow 8 $ arp (chooseBy "0.75 0.25" ["up", "down"]) $ n "c'min9'6 f4'min9'6 bf4'min9'6 [f4'min11'6 fs4'maj11'6] e4'min7'6 a4'min7'6 d4'min11'6 g4'min9'6 [fs4'maj9'6 c5'maj7'6 a4'maj9'6] cs'min9'6"
+  # sound "supervibe"
+  # octave 6
+  # decay sine + 5
+  # sustain 1.5
+  # room 0.4
+  # sz 0.4
+  # gain 0.7
+
+hush

@@ -1,0 +1,49 @@
+setcps (130/60/4)
+
+all $ hurry 1
+
+solo 1
+unsolo 1
+
+d1 (hurry 1.25 $ slow 4.0 $ chop 16 $ sound "<hibikase:7 hibikase:8>" # legato 1.2 # gain 1)
+
+d1 (jux rev $ hurry 1.25 $ fast 8 $ degradeBy 0.2 $ sometimesBy 0.33 (ply (choose [1,2]))
+$ sometimes (# speed (choose [0.75,0.5,1.25])) $ randslice 4 $ sound "<hibikase:7 hibikase:8>"
+# legato 1.2 # gain 1 # pan sine)
+
+do
+  d2
+    $ fast 1.25
+    $ somecyclesBy 0.25 rev
+    $ somecyclesBy 0.1 palindrome
+    $ jux rev
+    --(slow 4 $ slice 64 (run 64) $ s "breaks1:125" # gain 1 # speed 1.25 # lpf 7000)
+    (slow 4 $ slice 64 (run 64) $ s "breaks1:125" # gain 1 # speed 1.25)
+    # room 0.2
+  d6 $ hurry 1.25 $ sometimes (ply 2) $ s "deepsky:0*2" # octersub 0.8 # octersubsub 0.4 # gain 1
+  d4
+    $ fast 1.25
+    $ slow 2
+    $ ghost
+    $ sometimes (ply 2)
+    $ n "<as fs fs [c f5]>"
+    # s "bass8"
+    # octave 5
+    # octersubsub 0.3
+    # room 0.2
+    # gain 0.9
+  d3
+    $ fast 1.25
+    $ slow 2
+    $ sometimes (ply 2)
+    $ n "<as4'min7 fs4'maj9 fs4'dom7'5 [c4'dom9'ii f4'dom7'5]>"
+    # s "superreese"
+    # octave 5
+    # accelerate 0.8
+    # voice (slow 18.4829 $ range (-25) 10 sine)
+    # lfo (slow 9.18653 $ range (-1) 1 sine)
+    # rate (slow 11.18653 $ range (0.15) 0.5 cosine)
+    # legato 1.1
+    # room 0.2
+    # lpf 1000
+    # gain 0.6

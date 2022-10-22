@@ -1,0 +1,62 @@
+setcps (125/60/4)
+
+all $ fast 1
+
+d3 $ slow 1 $ sometimesBy 0.01 rev $ chunk 8 (# speed 3) $ chunk 11 (palindrome) $ sometimesBy (choose [0.15, 0.1, 0.05]) (ply (choose ([1,2]))) $ slice 8 (run 8) $ s "breaks125" # shape 0.2 # gain 0.8 # speed "<1>" # room 0.4
+
+d4 $ slow 4 $ sometimesBy 0.09 palindrome $ juxBy cosine rev $ chunk 13 (# speed 3) $ sometimesBy (choose [0.25, 0.15, 0.1]) (ply (choose ([1,2]))) $ slice 32 (run 32) $ s "breaks1:9" # speed 2 # room 0.4
+
+d9 $ sometimesBy 0.2 palindrome $ chunk 7 (# speed 3) $ slice 16 (run 16) $ s "breaks0:87" # speed 1.5 # room 0.4
+
+d5 $ ghost' 0.25 $ sometimes (ply 2) $ s "deepsky:12" # speed 0.75 # gain 0.9 # lpf 2000 # room 0.6 # sz 0.4 # gain 1.1
+
+d10 $ slow "1" $ chop "16" $ s "<rolling:12 rolling:13 rolling:14 rolling:15>" # speed 1.15 # hpf 4000
+
+d6 $ slow 4 $ chop 32 $ s "<hibikase:7 hibikase:8>" # speed 1.25 # hpf 2000
+
+d6 $ sometimesBy 0.2 (# speed (choose [1,0.5,0.75])) $ sometimes (ply 2) $ sometimesBy 0.6 (ply 2) $ fast (choose [8]) $ randslice 32 $ s "<hibikase:7 hibikase:8>" # lpf 2000 # speed 1
+
+
+d1
+  $ slow 2
+  $ off "q" (|+ n "12")
+  $ cat [n "<c6'min7 e'min9 fs'maj9 cs'maj9 bs'min9 fss'dom9>",
+         n "<a'min7 cs'min9 ef'maj9 as'maj9 gss'min9 e'dom9>",
+         n "<fs'min7 as'min9 c'maj9 g'maj9 ess'min9 fss'dom9>"]
+  # s "superfm"
+  # octave 4
+  # voice 0
+  # sustain 4
+  # room 0.8
+  # gain 0.5
+
+  d10
+    $ slow 2
+    $ arp "diverge"
+    $ juxBy sine rev
+    $ cat [n "<c6'min7'16*2 e'min9'16*2 fs'maj9'16*2 cs'maj9'16*2 bs'min9'16*2 fss'dom9'16*2>",
+           n "<a'min7'16*2 cs'min9'16*2 ef'maj9'16*2 as'maj9'16*2 gss'min9'16*2 e'dom9'16*2>",
+           n "<fs'min7'16*2 as'min9'16*2 c'maj9'16*2 g'maj9'16*2 ess'min9'16*2 [cs'dom9'16 fss'dom9'16]>"]
+    # s "superpiano"
+    # octave 4
+    # voice 0.2
+    # decay 0.01
+    # lpf 2000
+    # sustain 0.25
+    # gain 0.7
+
+
+d2
+  $ slow 2
+  $ sometimesBy 0.75 (juxBy (choose [1,0.5,0.25]) rev)
+  $ sometimesBy 0.666 (off "s" (|+ n "7"))
+  $ sometimesBy 0.777 (off "e" (|+ n "12"))
+  $ cat [n "<c e fs es fss fss4>",
+         n "<a cs ef fs e e4>",
+         n "<fs as c ds cs fss>"]
+  # s "bass8"
+  # octave 5
+  # legato 1
+  # room 0.4
+  # sz 0.4
+  # gain 1

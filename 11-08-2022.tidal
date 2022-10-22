@@ -1,0 +1,40 @@
+do
+  let sqpattern1 = "b4'maj7 d4'dom7'iii g4'maj9 bf3'dom7'iiii ef4'maj7'ii ef4'maj7'ii a4'min7 d4'dom7'ii"
+  let sqpattern2 = "g4'maj9 bf3'dom7'iii ef4'maj7 fs3'dom7'iiii bf3'maj7'ii bf3'maj7'ii f4'min7 bf3'dom7'iii"
+  let sqpattern3 = "ef4'maj7'ii ef4'maj7'ii a4'min7 d4'dom7'iii g4'maj7 g4'maj7 cs4'min7'iii fs4'dom7'ii"
+  let sqpattern4 = "bf4'maj7 bf4'maj7 f4'min7'ii bf3'dom7'iiii ef4'maj7'ii ef4'maj7'ii cs4'min7'iii fs4'dom7'ii"
+  d1
+    $ qtrigger 32
+    $ off "q" (|+ n 24)
+    $ slow 8 $ cat [n sqpattern1, n sqpattern2, n sqpattern3, n sqpattern4]
+    # s "supervibe"
+    # velocity 20
+    # octave 5
+    # sustain 2
+    # decay 25
+    # delay 0.05
+    # delayfeedback 0.3
+    # tremolorate 4
+    # tremdp 0.6
+    # vowel "e"
+    # room 0.2
+    # sz 0.4
+    # gain 1
+
+d2
+  $ every 3 palindrome
+  $ every 4 (jux rev)
+  $ stack [
+           --(whenmod 5 8 (# squiz 2) $ chunk' 3 (# speed 2) $ someCycles (hurry 0.5) $ n "1 5 1 5 1 5 1 5" # resonance (slow 3.14529 $ range 0 1 cosine)  # s "ul" # djf 0.3 # octer (choose [0, 0.1, 0.2, 0.3, 0.4, 0.5]) # vowel "u o i e a"),
+           --(whenmod 3 8 (# squiz 2) $ degradeBy 0.05 $ sometimesBy 0.8 (fast 1.5) $ sometimesBy 0.13 (hurry 2) $ n "3*8"  # s "jungle"),
+           --(whenmod 5 9 (# squiz 2) $ chunk  4  (# speed 2) $ hurry 0.5 $ n "8 1 8 1 8 1 8 1" # resonance (slow 2.15684635 $ range 0 1 sine) # s "ul" # djf 0.8 # octer (choose [0, 0.1, 0.2, 0.3, 0.4, 0.5]) # vowel "a e i o u"),
+           --(n "1 2 1 2" # s "uxay" # octersub 1.5 # pan "0 0.5 1 0.5"),
+           -- (whenmod 7 8 (# squiz 2) $ chunk  8  (# speed 2) $ degradeBy 0.05 $ sometimesBy 0.2 (fast 1.5) $ sometimesBy 0.21 (hurry 2) $ n "2*8" # s "ul" # shape 0.4 # gain 1.1),
+           --(every 3 (striate 4) $ fast 0.5 $ sound "coins*4" # pan "0.5 1 0.5 0" # octer 0.99),
+           --(fast 4 $ n "8 . 8 8" # s "jungle" # shape 0.7 # pan (choose [0, 0.5, 1, 0.5]))
+          ]
+  # sz 0.4
+  # room 0.2
+  # gain 0.9
+
+  panic

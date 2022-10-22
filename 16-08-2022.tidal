@@ -1,0 +1,32 @@
+d1 $ hurry 1.25 $ slow 3 $ sound "<meteor:0 meteor:1 meteor:12 meteor:16>" # gain 1.2 # room 0.4 # pan sine # lpf (fast 3.14529 $ range 700 2500 sine)
+
+d1 $ hurry 1.25 $ slow 3 $ slice 8 (mikupat1) $ sound "<meteor:3 meteor:4 meteor:5 meteor:6>" # room 0.4 # gain 1.2 # pan (fast 2 $ sine) # lpf (fast 3.14529 $ range 700 2500 sine)
+
+d1 $ hurry 1.25 $ slow 3 $ slice 8 "0 1 2 3 4 5 6 5" $ sound "<meteor:7 meteor:8 meteor:9 meteor:10>" # gain 1.2 # pan (fast 2 $ sine) -- # lpf (fast 3.14529 $ range 700 2500 sine)
+
+d3 $ hurry 1.25 $ fast 4 $ loopAt "8" $ slice 8 "6 6 6 6 6 6 6 6" $ sound "<meteor:11>" # room 0.4 # gain 0.8 # lpf (fast 3.14529 $ range 700 2500 cosine)
+
+d4 $ hurry 0.5 $ fast 1 $ splice "6 4 3 5" ("1 1 1 1") $ sound "meteor:23" # room 0.4 # pan (fast 2 $ sine) # lpf (fast 3.14529 $ range 700 2500 sine)
+
+let basspat1 = "[kawaiXD5:7 ~ ~ kawaiXD5:7] ~ ~ ~"
+let basspat2 = "[kawaiXD5:7 ~ ~ kawaiXD5:7] [~ kawaiXD5:7] [kawaiXD5:7*2] [kawaiXD5:7*2]"
+
+let mikupat1 = "0 1 2 3 4 5 6 5"
+let mikupat2 = "0 2 0 4 0 6 0 8"
+let mikupat3 = "6 0 6 1 6 2 6 3"
+let mikupat4 =
+
+do
+  d2
+    $ every 16 (jux rev)
+    $ every 3 palindrome
+    $ every 8 rev
+    $ stack [
+              (fast 1.25 $ degrade $ sometimesBy 0.22 (ply (choose [0.5])) $ "HR16A:9*16" # krush 89 # gain 0.6),
+              (fast 1.25 $ sometimesBy 0.05 (ply (choose [2])) $ basspat1 # gain 0.9 # octersub 0.2),
+              (fast 1.25 $ degradeBy 0.7 $ (sometimesBy 0.33 (ply (choose [2,3]))) $ "HR16A:38*8" # gain 0.9 # krush (slow 1.2546 $ range 2 8 sine) # kcutoff 1000 # gain 0.7),
+              (fast 1.25 $ (sometimesBy 0.5 (ply (choose [2,3]))) $ "[~ ~ ~ HR16A:39?] [~ HR16A:39?]" # gain 0.7),
+              (fast 1.25 $ sometimesBy 0.4 (fast (choose[0.25,0.5])) "[~ kawaiXD5:17?] [~ kawaiXD5:17?] ~ kawaiXD5:17?" # gain 1 # shape 0.4)
+            ]
+
+  d5 $

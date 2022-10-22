@@ -1,0 +1,25 @@
+setcps (190/60/4)
+
+all $ hurry 1
+
+solo 1
+unsolo 1
+
+d1
+  $ slow 4
+  $ arp "updown"
+  $ cat [n "<d'min9'16 c'min9'16 df'min9'16 b'min9'16>",
+         n "<fs'maj9'16 cs'maj9'16 gs'maj9'16 ds'maj9'16>",
+         n "<bf'min9'16 af'min9'16 gf'min9'16 e'min9'16>",
+         n "<d'min9'16 c'min9'16 df'min9'16 b'min9'16>"]
+  # s "supercomparator"
+  # octave 4
+  # sustain 0.6
+  # resonance 0.1
+  # voice (slow 0.86138413516 $ sine+0.5)
+  # lfo (slow 0.6186486316 cosine+0.5)
+  # rate 0.25
+  # gain 0.8
+
+d2
+  $ jux rev $ slice 8 (run 8) $ s "breaks0:66"

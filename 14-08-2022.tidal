@@ -1,0 +1,54 @@
+setcps (150/60/4)
+
+d1
+  $ hurry (choose [0.5,1,1.5,2])
+  $ sometimesBy 0.25 (hurry (choose [1.25,1,0.75,0.5]))
+  $ chew (choose [8]) "0 .. 4"
+  $ n "< 4 ~ 5 ~ >"
+  # s "tellyourworld"
+  # release 12
+  -- # ring sine
+  # leslie 0.1
+  # lsize 0.2
+  -- # comb cosine
+  # room 0.2
+  # sz 0.4
+  # lpf 1500
+
+d2
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ hurry (choose [0.5,0.333,0.75,0.2])
+  $ "insect:0"
+  # room 0.6
+
+d3
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ sound "birds*0.2456853" # n (irand 10)
+  # room 0.2
+  # pan (slow 2.1568435 $ cosine)
+
+d4
+  $ slow (choose [0.5,0.333,0.75,2,1,4])
+  $ sound "birds3*0.456153453" # n (irand 19)
+  # room 0.2
+  # pan (slow 1.954683483 $ sine)
+
+
+d5
+  $ slow 4
+  $ striate 3
+  $ loopAt 1
+  $ n "< 1 >"
+  # s "tellyourworld"
+  # release 12
+  -- # ring sine
+  # leslie 0.1
+  # lsize 0.2
+  -- # comb sine
+  # room 0.2
+  # sz 0.4
+
+  # lpf 2000
+
+
+panic
